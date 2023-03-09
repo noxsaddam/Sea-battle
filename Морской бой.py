@@ -20,7 +20,7 @@ class Ship:  # Класс корабля
     def get_start_coords(self):  # получение начальных координат корабля в виде кортежа x, y;
         return self._x, self._y
 
-    def ship_coords(self):  # получение кортежа из координат всех точек коробля
+    def ship_coords(self):  # получение кортежа из координат всех точек корабля
         coords = (self._y, self._x),
         for i in range(1, self._length):
             if self._tp == 2:
@@ -29,7 +29,7 @@ class Ship:  # Класс корабля
                 coords += (self._y, self._x + i),
         return coords
 
-    def ship_borders(self):  # получение игровый зоны коробля
+    def ship_borders(self):  # получение игровый зоны корабля
         borders = []
         if self._tp == 2:
             borders.extend(Ship(self._length + 2, self._tp, self._x - 1, self._y - 1).ship_coords())
@@ -85,7 +85,7 @@ class GamePole:  # Класс игрового пол
             return all([not ship.is_collide(i) for i in self._ships if i != ship]) or not self._ships
         return False
 
-    def filling_gamepole(self):  # Заполнение игрового поля значениями добавленных короблей
+    def filling_gamepole(self):  # Заполнение игрового поля значениями добавленных кораблей
         self._gamepole = [[0 for j in range(self._size)] for i in range(self._size)]
         for ship in self.get_ships():
             for coords, cell in zip(ship.ship_coords(), ship._cells):
